@@ -6,7 +6,6 @@ TOX=tox
 NOSE2TESTS=nose2
 ICONV=iconv
 FLAKE8=flake8
-FLAKEPLUS=flakeplus
 SPHINX2RST=sphinx2rst
 
 SPHINX_DIR=docs/
@@ -17,7 +16,6 @@ CONTRIBUTING=CONTRIBUTING.rst
 CONTRIBUTING_SRC="docs/contributing.rst"
 SPHINX_HTMLDIR="${SPHINX_BUILDDIR}/html"
 DOCUMENTATION=Documentation
-FLAKEPLUSTARGET=2.7
 
 all: help
 
@@ -33,7 +31,6 @@ help:
 	@echo "    contribcheck     - Check CONTRIBUTING.rst encoding"
 	@echo "    flakes --------  - Check code for syntax and style errors."
 	@echo "      flakecheck     - Run flake8 on the source code."
-	@echo "      flakepluscheck - Run flakeplus on the source code."
 	@echo "readme               - Regenerate README.rst file."
 	@echo "contrib              - Regenerate CONTRIBUTING.rst file"
 	@echo "clean-dist --------- - Clean all distribution build artifacts."
@@ -86,13 +83,7 @@ flakecheck:
 flakediag:
 	-$(MAKE) flakecheck
 
-flakepluscheck:
-	$(FLAKEPLUS) --$(FLAKEPLUSTARGET) "$(PROJ)"
-
-flakeplusdiag:
-	-$(MAKE) flakepluscheck
-
-flakes: flakediag flakeplusdiag
+flakes: flakediag
 
 clean-readme:
 	-rm -f $(README)
