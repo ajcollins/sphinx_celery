@@ -1,5 +1,8 @@
 setuptools>=59.2.0
 wheel>=0.37.0
 flake8>=5.0.1
+flake8-bugbear
+flake8-typing-imports>=1.1
+pep8-naming
 tox>=3.24.4
 bumpversion
