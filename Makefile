@@ -3,7 +3,7 @@ PGPIDENT="Celery Security Team"
 PYTHON=python
 GIT=git
 TOX=tox
-NOSETESTS=nosetests
+NOSE2TESTS=nose2
 ICONV=iconv
 FLAKE8=flake8
 FLAKEPLUS=flakeplus
@@ -135,7 +135,7 @@ test:
 	$(PYTHON) setup.py test
 
 cov:
-	$(NOSETESTS) -xv --with-coverage --cover-html --cover-branch
+	$(NOSE2TESTS) --fail-fast --verbose --with-coverage --coverage-report html --start-dir "$(PROJ)"
 
 build:
 	$(PYTHON) setup.py sdist bdist_wheel

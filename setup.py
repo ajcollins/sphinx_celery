@@ -121,7 +121,7 @@ setup(
     zip_safe=False,
     install_requires=reqs('default.txt'),
     tests_require=reqs('test.txt'),
-    test_suite='nose.collector',
+    test_suite='nose2.collector.collectorr',
     classifiers=classifiers,
     entry_points={
         'sphinx.html_themes': [

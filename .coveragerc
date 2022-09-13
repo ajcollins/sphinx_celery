@@ -1,7 +1,6 @@
 [run]
 branch = 1
 cover_pylib = 0
-include=*sphinx_celery/*
 omit = sphinx_celery.tests.*
 
 [report]
