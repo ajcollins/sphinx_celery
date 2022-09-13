@@ -1,5 +1,6 @@
 import os
 import sys
+from types import MappingProxyType
 
 from . import get_html_templates_path
 
@@ -119,30 +120,37 @@ def build_config(
         canonical_stable_url=None,
         canonical_dev_url=None,
         django_settings=None,
-        configure_django_settings={},
+        configure_django_settings=MappingProxyType({}),
         copyright=None,
         publisher=None,
-        description='',
-        path_additions=['_ext'],
+        description=None,
+        path_additions=None,
         version_dev=None,
         version_stable=None,
         extensions=EXTENSIONS,
-        extra_extensions=[],
+        extra_extensions=None,
         linkcode_url=LINKCODE_URL,
         github_branch=GITHUB_BRANCH,
         master_doc='index',
         html_logo=None,
-        html_prepend_sidebars=[],
+        html_prepend_sidebars=None,
         templates_path=None,
         latex_logo=None,
         intersphinx_mapping=INTERSPHINX_MAPPING,
-        extra_intersphinx_mapping={},
+        extra_intersphinx_mapping=MappingProxyType({}),
         include_intersphinx=frozenset(),
         exclude_intersphinx=frozenset(),
         spelling_lang='en_US',
         spelling_show_suggestions=True,
         extlinks=None,
         **kwargs):
+    # Handle mutable defaults
+    # flake8: B006 Do not use mutable data structures for argument defaults.
+    description = description or ''
+    path_additions = path_additions or ['_ext']
+    extra_extensions = extra_extensions or []
+    html_prepend_sidebars = html_prepend_sidebars or []
+
     add_paths(config_file, path_additions)
     if configure_django_settings or django_settings:
         configure_django(django_settings, **configure_django_settings or {})
